@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="css/Main.css"/>
+	</head>
+	<body>
+		<div id = "in">
+			<textarea id = "UserCode" rows = "20" cols = "60">
+// You have these variables:
+// balance - how much money you have
+// spins   - array of past spins
+//
+// return bet descriptions as an array of {amount, bet}
+// Example:
+
+if (balance < 20){
+	return []; // Save something to hire a taxi and go home
+}
+
+// Bet 5 on red and 5 on black
+return [{amount:5, bet:'red'}, {amount:5, bet:'black'}];
+			</textarea>
+			<input type = number id = "StartBalance" value = 100>
+			</input>
+			<input type = number id = "MinBet" value = 5>
+			</input>
+			<input type = number id = "NumSpins" value = 1000>
+			</input>
+			<input type = button id = "Exec">
+Go
+			</input>
+		</div>
+		<script src = "scripts/MonteMain.js"></script>
+	</body>
+</html>
