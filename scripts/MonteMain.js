@@ -8,6 +8,27 @@ var black = function(num) {
 	return false;
 }
 
+var red = function(num) {
+	return (num !== 0) && !black(num);
+}
+
+var even = function(num) {
+	return ((num !== 0) && ((num % 2) === 0));
+}
+
+var odd = function(num) {
+	return ((num !== 0) && ((num % 2) === 1));
+}
+
+var manque = function(num) {
+	return (num !== 0) && (num <= 18);
+}
+
+var passe = function(num) {
+	return (num >= 19);
+}
+
+
 var manageExec = function() {
 	var totalBalance = parseInt(document.getElementById('StartBalance').value, 10);
 	var minBet       = parseInt(document.getElementById('MinBet').value, 10);
@@ -48,28 +69,46 @@ var pay = function(balance, bet, spin) {
 			
 			bet[i].bet = bet[i].bet.toLowerCase();
 			if (bet[i].bet == 'even') {
-				if ((spin !== 0) && ((spin % 2) === 0))
+				if (even(spin)) {
 					win += bet[i].amount * 2;
+					evenCount++;
+				}
 			}
 			else if (bet[i].bet == 'odd') {
-				if ((spin !== 0) && ((spin % 2) === 1))
+				if (odd(spin)) {
 					win += bet[i].amount * 2;
+					oddCount++;
+				}
 			}
 			if (bet[i].bet == 'red') {
-				if ((spin !== 0) && !black(spin))
+				if (red(spin)) {
 					win += bet[i].amount * 2;
+					redCount++;
+				}
 			}
 			else if (bet[i].bet == 'black') {
-				if (black(spin))
+				if (black(spin)) {
 					win += bet[i].amount * 2;
+					blackCount++;
+				}
 			}
 			if (bet[i].bet == 'manque') {
-				if ((spin !== 0) && (spin <= 18))
+				if (manque(spin)) {
 					win += bet[i].amount * 2;
+					manqueCount++;
+				}
 			}
 			else if (bet[i].bet == 'passe') {
-				if ((spin !== 0) && (spin >= 19))
+				if (passe(spin)) {
 					win += bet[i].amount * 2;
+					passeCount++;
+				}
+			}
+			else if (bet[i].bet.contains('numbers')) {
+				if (passe(spin)) {
+					win += bet[i].amount * 2;
+					passeCount++;
+				}
 			}
 		}
 	}
